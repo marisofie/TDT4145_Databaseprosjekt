@@ -1,0 +1,43 @@
+import java.sql.Connection;
+import com.mysql.cj.jdbc.MysqlDataSource;
+
+import java.sql.SQLException;
+import java.util.Properties;
+
+public abstract class DBConnection {
+
+    protected Connection connection;
+
+    public void connect() {
+        
+        try {
+            MysqlDataSource dataSource = new MysqlDataSource();
+            Properties dbProperties = new Properties();
+
+            dbProperties.put("url", "jdbc:mysql://mysql.stud.ntnu.no/marisler_dbproject:3306");
+            dbProperties.put("user", "marenwe_project");
+            dbProperties.put("password", "WRHNB9pnZYCLYpKrGnrt");
+
+            dataSource.setURL(dbProperties.getProperty("url"));
+            dataSource.setUser(dbProperties.getProperty("user"));
+            dataSource.setPassword(dbProperties.getProperty("password"));
+
+            connection = dataSource.getConnection();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void disconnect() {
+
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+}
