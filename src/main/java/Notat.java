@@ -8,7 +8,7 @@ public class Notat implements ActiveDomainObject{
 
     public static int notatIDCounter = 0;
 
-    private int notatID;
+    private final int notatID;
     private String formaal;
     private String opplevelse;
 
