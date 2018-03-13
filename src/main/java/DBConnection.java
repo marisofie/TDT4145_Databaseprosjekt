@@ -9,7 +9,7 @@ public abstract class DBConnection {
     protected Connection connection;
 
     public void connect() {
-        
+
         try {
             MysqlDataSource dataSource = new MysqlDataSource();
             Properties dbProperties = new Properties();
