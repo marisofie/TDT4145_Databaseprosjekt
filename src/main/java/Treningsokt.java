@@ -13,7 +13,7 @@ public class Treningsokt implements ActiveDomainObject{
 
     public static int oktIDCounter = 0;
 
-    private final int oktID;
+    public final int oktID;
 
     private Date dato;
     private Time tidspunkt;

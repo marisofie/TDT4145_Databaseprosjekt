@@ -8,7 +8,7 @@ public class Apparat implements  ActiveDomainObject {
 
     public static int apparatIDCounter = 0;
 
-    private final int apparatID;
+    public final int apparatID;
     private String apparatNavn;
     private String funksjonsbeskrivelse;
 
