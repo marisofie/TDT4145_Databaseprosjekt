@@ -1,4 +1,5 @@
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class OvelseController extends DBConnection {
 
@@ -29,13 +30,16 @@ public class OvelseController extends DBConnection {
         }
     }
 
-    public void addApparat (String apparatNavn, String funksjonsbeskrivelse) {
-        //må finne en måte å hente ut riktig apparat her.
+    //usikker på om vi her skal legge til apparatet til en øvelse, eller om vi skal opprette ett nytt apparat?
+    public void addApparat (int apparatID, String apparatNavn, String funksjonsbeskrivelse) {
+        Apparat apparat = new Apparat(apparatID, apparatNavn, funksjonsbeskrivelse);
+        apparat.save(connection);
 
 
     }
 
-    public void setOvelsesgruppe () {
+    public void setOvelsesgruppe (boolean medApparat, String ovelsesNavn) {
+        //hjelp
 
     }
 

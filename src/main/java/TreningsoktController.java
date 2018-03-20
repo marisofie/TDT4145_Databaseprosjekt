@@ -43,9 +43,5 @@ public class TreningsoktController extends DBConnection {
     public void saveTreningsokt() {
         this.treningsokt.save(connection);
 
-
     }
-}
-
-
 }
