@@ -1,3 +1,5 @@
+package core;
+
 import javax.swing.plaf.nimbus.State;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -11,16 +13,14 @@ public class Notat implements ActiveDomainObject{
     private final int notatID;
     private String formaal;
     private String opplevelse;
-    private int oktID;
 
 
-    public Notat(String formaal, String opplevelse, int oktID) {
+    public Notat(String formaal, String opplevelse) {
         this.notatID = notatIDCounter++;
         //litt usikker her på om vi skal kreve at dette blir oppgitt for å lage notat
         //føler det gir mening
         this.formaal = formaal;
         this.opplevelse = opplevelse;
-        this.oktID = oktID;
     }
 
     public void setFormaal(String formaal) {
@@ -35,7 +35,7 @@ public class Notat implements ActiveDomainObject{
     public void initialize(Connection connection) {
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("select Formaal, Opplevelse, OktID from Notat where NotatID = " + this.notatID);
+            ResultSet rs = stmt.executeQuery("select Formaal, Opplevelse from Notat where NotatID = " + this.notatID);
 
             while (rs.next()) {
                 this.formaal = rs.getString("Formaal");
@@ -58,7 +58,7 @@ public class Notat implements ActiveDomainObject{
     public void save(Connection connection) {
         try {
             Statement stmt = connection.createStatement();
-            stmt.executeUpdate("insert into Notat values ("+this.notatID+","+this.formaal+","+this.opplevelse+","+this.oktID+")");
+            stmt.executeUpdate("insert into Notat values ("+this.notatID+","+this.formaal+","+this.opplevelse+")");
         } catch (SQLException e) {
             e.printStackTrace();
         }

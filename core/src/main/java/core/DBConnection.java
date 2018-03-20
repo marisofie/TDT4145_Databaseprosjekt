@@ -1,3 +1,5 @@
+package core;
+
 import java.sql.Connection;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 //import com.mysql.cj.jdbc.MysqlDataSource;
@@ -32,11 +34,12 @@ public abstract class DBConnection {
     }
 
     public void disconnect() {
-
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
     }

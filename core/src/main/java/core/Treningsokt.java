@@ -1,3 +1,5 @@
+package core;
+
 import com.sun.org.apache.bcel.internal.generic.Select;
 
 import java.sql.Connection;
@@ -13,7 +15,7 @@ public class Treningsokt implements ActiveDomainObject{
 
     public static int oktIDCounter = 0;
 
-    public final int oktID;
+    private final int oktID;
 
     private Date dato;
     private Time tidspunkt;
