@@ -1,3 +1,5 @@
+package core;
+
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -6,9 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Apparat implements  ActiveDomainObject {
 
-    public int apparatID;
+public class Apparat implements ActiveDomainObject {
+
+    private int apparatID = -1;
     private String apparatNavn;
     private String funksjonsbeskrivelse;
 
@@ -18,16 +21,28 @@ public class Apparat implements  ActiveDomainObject {
         this.funksjonsbeskrivelse = funksjonsbeskrivelse;
     }
 
-    public void setApparatID() {
-        this.apparatID = apparatID++;
+    public void setApparatID(int apparatID) {
+        this.apparatID = apparatID;
+    }
+
+    public int getApparatID() {
+        return this.apparatID;
     }
 
     public void setApparatNavn(String apparatNavn) {
         this.apparatNavn = apparatNavn;
     }
 
+    public String getApparatNavn(){
+        return this.apparatNavn;
+    }
+
     public void setFunksjonsBeskrivelse(String funksjonsbeskrivelse) {
         this.funksjonsbeskrivelse = funksjonsbeskrivelse;
+    }
+
+    public String getFunksjonsbeskrivelse() {
+        return this.funksjonsbeskrivelse;
     }
 
     @Override
@@ -54,6 +69,10 @@ public class Apparat implements  ActiveDomainObject {
 
     @Override
     public void save(Connection connection) {
+        if (this.apparatID == -1 || this.apparatNavn == null || this.funksjonsbeskrivelse == null){
+            throw new IllegalStateException("ApparatID, ApparatNavn and Funksjonsbeskrivelse must be set.");
+        }
+
         try {
             Statement stmt = connection.createStatement();
             stmt.executeUpdate("insert into Apparat values ("+this.apparatID+","+this.apparatNavn+","+this.funksjonsbeskrivelse+")");
@@ -92,30 +111,26 @@ public class Apparat implements  ActiveDomainObject {
 
     }
 
-    public static String toString(List<Apparat> results) {
-        String strResults = "";
-        int x = 0;
-
-        while (x <= results.size()) {
-            strResults += results.get(x);
-            x++;
-        }
-
-        return strResults;
+    public String toString() {
+        return "Apparat: " + this.apparatID +", " + this.apparatNavn + ", " + this.funksjonsbeskrivelse;
     }
 
     public static void main(String[] args) {
         System.out.print("hei");
-        DBConnection db = new DBConnection() {
+        DBConnection dbConn = new DBConnection() {
             @Override
             public void connect() {
                 super.connect();
             }
         };
 
-        List<Apparat> results = getAll(db.connection);
+        List<Apparat> results = getAll(dbConn.connection);
 
-        System.out.print(toString(results));
+        for (Apparat result : results) {
+            System.out.println(result.toString());
+        }
+
+
     }
 }
 
