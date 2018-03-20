@@ -1,4 +1,4 @@
-package core;
+package main.java.core;
 
 import javax.swing.plaf.nimbus.State;
 import java.sql.Connection;

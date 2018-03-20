@@ -1,5 +1,8 @@
+package core;
+
 import java.sql.SQLException;
 import java.sql.Statement;
+
 
 public class OvelseController extends DBConnection {
 
@@ -21,7 +24,7 @@ public class OvelseController extends DBConnection {
     public void createOvelse(boolean medApparat, String ovelseNavn) {
         if (medApparat) {
             this.ovelseMA = new OvelseMedApparat();
-            this.ovelseMA.OvelseMedApparat(ovelseNavn, this.apparat.apparatID);
+            this.ovelseMA.OvelseMedApparat(ovelseNavn, this.apparat.getApparatID());
 
         } else {
             this.ovelseUA = new OvelseUtenApparat();

@@ -1,3 +1,5 @@
+package core;
+
 import java.sql.SQLException;
 import java.sql.Date;
 import java.sql.Time;

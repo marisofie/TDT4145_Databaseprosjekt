@@ -1,4 +1,4 @@
-package core;
+package main.java.core;
 
 import com.sun.org.apache.bcel.internal.generic.Select;
 

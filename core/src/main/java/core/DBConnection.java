@@ -1,4 +1,4 @@
-package core;
+package main.java.core;
 
 import java.sql.Connection;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
